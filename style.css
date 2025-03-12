@@ -22,8 +22,14 @@ article {
     margin-top: 20px;
 }
 
-h2, h3 {
+h2 {
     color: #444;
+}
+
+/* Subtitles under Features */
+h3 {
+    color: #a5d916; /* Adjust this color to match your background banner */
+    font-weight: bold; /* Ensure subtitles are bold */
 }
 
 p {
@@ -46,3 +52,15 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+/* Bullet points under 'The Road Ahead' */
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Bold 'Solution' text */
+.solution {
+    font-weight: bold;
+}
+
