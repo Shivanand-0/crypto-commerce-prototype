@@ -25,7 +25,9 @@ article {
 h2 {
     color: #444;
 }
-
+.no-underline {
+    text-decoration: none;
+}
 /* Subtitles under Features */
 h3 {
     color: #a5d916; /* Adjust this color to match your background banner */
