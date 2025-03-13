@@ -1,9 +1,9 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    margin: 40px auto;
+    margin: 20px auto;
     max-width: 800px;
-    padding: 20px;
+    padding: 10px;
     background-color: #f4f4f4;
     color: #333;
 }
@@ -19,7 +19,9 @@ h1 {
 }
 
 article {
-    margin-top: 20px;
+    max-width: 800px; /* Keeps content from stretching too wide */
+    margin: 0 auto; /* Centers the article */
+    text-align: justify; /* Aligns text evenly on both sides */
 }
 
 h2 {
@@ -35,7 +37,8 @@ h3 {
 }
 
 p {
-    margin: 10px 0;
+    margin-bottom: 10px; /* Adjusts spacing between paragraphs */
+    line-height: 1.5; /* Improves readability */
 }
 
 footer {
