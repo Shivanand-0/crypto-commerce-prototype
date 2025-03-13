@@ -10,62 +10,58 @@ body {
 
 header {
     text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #ddd;
+    padding: 20px;
+    background-color: #a5d916;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 h1 {
-    color: #222;
+    color: #fff;
+    font-size: 24px;
 }
 
 article {
-    max-width: 800px; /* Keeps content from stretching too wide */
-    margin: 0 auto; /* Centers the article */
-    text-align: justify; /* Aligns text evenly on both sides */
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
 }
 
-h2 {
-    color: #444;
-}
-.no-underline {
-    text-decoration: none;
-}
-/* Subtitles under Features */
 h3 {
-    color: #a5d916; /* Adjust this color to match your background banner */
-    font-weight: bold; /* Ensure subtitles are bold */
+    color: #a5d916;
+    font-weight: bold;
 }
 
 p {
-    margin-bottom: 10px; /* Adjusts spacing between paragraphs */
-    line-height: 1.5; /* Improves readability */
+    margin-bottom: 10px;
+    line-height: 1.5;
 }
 
-footer {
-    margin-top: 30px;
-    padding-top: 10px;
-    border-top: 1px solid #ddd;
-    text-align: center;
-    font-size: 14px;
+iframe {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    display: block;
+    margin: 20px auto;
 }
 
-a {
-    color: #0066cc;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-/* Bullet points under 'The Road Ahead' */
 ul {
     list-style-type: disc;
     margin-left: 20px;
 }
 
-/* Bold 'Solution' text */
-.solution {
+.feature-title {
+    text-decoration: underline;
     font-weight: bold;
+}
+
+footer {
+    margin-top: 30px;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
 }
 
