@@ -13,7 +13,7 @@ https://github.com/AnushkaGupta1001/crypto-stitch.git
 2. Open `index.html` in a browser.
 
 ## 🔹 Live Demo
-[View on GitHub Pages](https://yourusername.github.io/crypto-commerce-article/)
+[View on GitHub Pages](https://anushkagupta1001.github.io/crypto-commerce-prototype/)
 
 ---
 🎉 **Enjoy reading!**
