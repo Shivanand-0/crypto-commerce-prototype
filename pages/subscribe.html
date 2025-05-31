@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Subscribe to Newsletter</title>
+</head>
+<body>
+    <div class="subscribe-card">
+        <h2>Subscribe to Newsletter</h2>
+        <p>Receive my newsletter after adding new post.</p>
+        <div class="subscribe-form">
+            <form id="subscribeForm" action="formspree.io_URL" method="post">  <!--url: https://formspree.io/key-->
+                <table>
+                    <tr>
+                        <td><label for="username"> Name: </label></td>
+                        <td><input type="text" name="username" id="username" class="input-box"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="useremail">Email Id: </label></td>
+                        <td><input type="email" name="useremail" id="useremail" class="input-box"></td>
+                    </tr>
+                    <tr>
+                        <td><button type="submit" class="subscribe-submit-btn" id="subscribeForm">Subscribe</button></td>                        
+                    </tr>
+                </table>          
+                </form>
+        </div>
+    </div>
+    
+<script>
+     // On page load, clear form fields (especially useful if browser cached them)
+  window.onload = function () {
+    const form = document.getElementById('subscribeForm');
+    if (form) form.reset();
+  };
+</script>
+</body>
+</html>
