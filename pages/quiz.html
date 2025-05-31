@@ -17,10 +17,25 @@
     </div>
   </nav>
   <div class="glossary-container" id="quiz-container">
-    <h1>Crypto Beginner Quiz</h1>
-    <div id="quiz-box" class="glossary-list">
-      <!-- Quiz questions will be injected here -->
+    <h1>Crypto Quiz</h1>
+    <div id="quiz-setup" class="glossary-card" style="max-width:500px;margin:0 auto 32px auto;">
+      <form id="setup-form">
+        <label for="level-select"><strong>Choose Level:</strong></label><br>
+        <select id="level-select" class="input-box" style="width:100%;margin-bottom:16px;">
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <label for="num-select"><strong>Number of Questions:</strong></label><br>
+        <select id="num-select" class="input-box" style="width:100%;margin-bottom:16px;">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+        <button type="submit" class="crypto-btn" style="width:100%;">Start Quiz</button>
+      </form>
     </div>
+    <div id="quiz-box" class="glossary-list" style="display:none;"></div>
     <div id="quiz-result" class="glossary-card" style="display:none;"></div>
   </div>
   <script src="../quiz.js"></script>
