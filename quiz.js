@@ -9,7 +9,8 @@ const quizData = {
         'A physical coin you can hold',
         'A government-issued currency'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'Cryptocurrency is a digital or virtual currency that uses cryptography for security, making it secure and decentralized.'
     },
     {
       question: 'Which is the first and most well-known cryptocurrency?',
@@ -19,7 +20,8 @@ const quizData = {
         'Bitcoin',
         'Litecoin'
       ],
-      answer: 2
+      answer: 2,
+      explanation: 'Bitcoin was the first cryptocurrency, launched in 2009, and remains the most well-known.'
     },
     {
       question: 'What is a blockchain?',
@@ -29,7 +31,8 @@ const quizData = {
         'A social media platform',
         'A kind of wallet'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A blockchain is a decentralized digital ledger that records transactions across many computers.'
     },
     {
       question: 'What do you need to access your crypto funds?',
@@ -39,7 +42,8 @@ const quizData = {
         'A bank account',
         'A passport'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A private key is required to access and control your crypto funds. Never share it with anyone.'
     },
     {
       question: 'What is an NFT?',
@@ -49,7 +53,8 @@ const quizData = {
         'A National Fund Transfer',
         'A Network File Transfer'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'NFT stands for Non-Fungible Token, a unique digital asset verified using blockchain technology.'
     },
     {
       question: 'Which of these is a crypto wallet?',
@@ -59,7 +64,8 @@ const quizData = {
         'Visa',
         'Mastercard'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'MetaMask is a popular crypto wallet used to store and manage cryptocurrencies.'
     },
     {
       question: 'What is the main benefit of decentralization?',
@@ -69,7 +75,8 @@ const quizData = {
         'Lower taxes',
         'More advertisements'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'Decentralization means no single entity controls the network, increasing security and trust.'
     },
     {
       question: 'What is a smart contract?',
@@ -79,7 +86,8 @@ const quizData = {
         'A type of insurance',
         'A crypto exchange'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A smart contract is a self-executing program on a blockchain that runs when conditions are met.'
     },
     {
       question: 'Which of these is NOT a cryptocurrency?',
@@ -89,7 +97,8 @@ const quizData = {
         'Litecoin',
         'Dollar'
       ],
-      answer: 3
+      answer: 3,
+      explanation: 'Dollar is a government-issued currency, not a cryptocurrency.'
     },
     {
       question: 'What does HODL mean in crypto slang?',
@@ -99,7 +108,8 @@ const quizData = {
         'Hack online digital ledger',
         'Hide old digital logs'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'HODL means "Hold On for Dear Life"—a term for keeping your crypto rather than selling.'
     },
     {
       question: 'What is a crypto address?',
@@ -109,7 +119,8 @@ const quizData = {
         'A government ID',
         'A type of NFT'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A crypto address is a unique string that allows you to send or receive cryptocurrency.'
     },
     {
       question: 'Which is a popular use of NFTs?',
@@ -119,7 +130,8 @@ const quizData = {
         'Mining Bitcoin',
         'Paying taxes'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'NFTs are often used for digital art ownership, providing proof of authenticity and ownership.'
     },
     {
       question: 'What is a crypto wallet used for?',
@@ -129,7 +141,8 @@ const quizData = {
         'Printing money',
         'Paying bills'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A crypto wallet stores your private and public keys, allowing you to access your funds.'
     },
     {
       question: 'Which of these is a stablecoin?',
@@ -139,7 +152,8 @@ const quizData = {
         'Dogecoin',
         'Ether'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'USDT (Tether) is a stablecoin, meaning its value is pegged to a stable asset like the US dollar.'
     },
     {
       question: 'What is the main feature of blockchain?',
@@ -149,7 +163,8 @@ const quizData = {
         'Physical coins',
         'Government regulation only'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'Blockchain is valued for its immutability (records can\'t be changed) and transparency.'
     }
   ],
   intermediate: [
@@ -161,7 +176,8 @@ const quizData = {
         'A type of wallet',
         'A crypto exchange'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'Proof of Work (PoW) is a consensus mechanism where miners solve complex mathematical puzzles to validate transactions and secure the blockchain.'
     },
     {
       question: 'Which blockchain introduced smart contracts?',
@@ -171,7 +187,8 @@ const quizData = {
         'Litecoin',
         'Dogecoin'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'Ethereum was the first blockchain to introduce smart contracts, enabling decentralized applications.'
     },
     {
       question: 'What is a private key?',
@@ -181,7 +198,8 @@ const quizData = {
         'A type of NFT',
         'A mining tool'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A private key is a secret code that allows you to access and control your cryptocurrency funds.'
     },
     {
       question: 'What is DeFi?',
@@ -191,7 +209,8 @@ const quizData = {
         'Data Filtering',
         'Direct Funding'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'DeFi stands for Decentralized Finance, which refers to financial services built on blockchain technology.'
     },
     {
       question: 'Which is a decentralized exchange?',
@@ -201,7 +220,8 @@ const quizData = {
         'PayPal',
         'Robinhood'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'Uniswap is a decentralized exchange (DEX) that allows users to trade cryptocurrencies directly from their wallets.'
     },
     {
       question: 'What is a liquidity pool?',
@@ -211,7 +231,8 @@ const quizData = {
         'A type of wallet',
         'A mining farm'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A liquidity pool is a collection of funds locked in a smart contract to facilitate trading on decentralized exchanges.'
     },
     {
       question: 'What is a gas fee?',
@@ -221,7 +242,8 @@ const quizData = {
         'A tax on crypto',
         'A wallet maintenance fee'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A gas fee is a payment made to compensate for the computing energy required to process transactions on a blockchain.'
     },
     {
       question: 'What is staking?',
@@ -231,7 +253,8 @@ const quizData = {
         'Mining with hardware',
         'Paying transaction fees'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'Staking involves locking up your cryptocurrency to help secure a blockchain network and earn rewards.'
     },
     {
       question: 'What is a DAO?',
@@ -241,7 +264,8 @@ const quizData = {
         'Data Analysis Office',
         'Direct Access Option'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A DAO is a Decentralized Autonomous Organization, run by rules encoded as computer programs on a blockchain.'
     },
     {
       question: 'What is an airdrop in crypto?',
@@ -251,7 +275,8 @@ const quizData = {
         'A type of NFT',
         'A mining process'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'An airdrop is a free distribution of cryptocurrency tokens to users, often as a promotion or reward.'
     },
     {
       question: 'What is a cold wallet?',
@@ -261,7 +286,8 @@ const quizData = {
         'A hot wallet',
         'A type of blockchain'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A cold wallet is a cryptocurrency wallet that is not connected to the internet, making it more secure from hacks.'
     },
     {
       question: 'What is a token?',
@@ -271,7 +297,8 @@ const quizData = {
         'A type of wallet',
         'A mining tool'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A token is a digital asset created on a blockchain, often representing value or utility.'
     },
     {
       question: 'What is an oracle in blockchain?',
@@ -281,7 +308,8 @@ const quizData = {
         'A type of wallet',
         'A mining pool'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'An oracle is a service that provides real-world data to smart contracts on the blockchain.'
     },
     {
       question: 'What is a fork in blockchain?',
@@ -291,7 +319,8 @@ const quizData = {
         'A mining tool',
         'A crypto exchange'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A fork is a change in the blockchain protocol that creates two separate chains.'
     },
     {
       question: 'What is a public key?',
@@ -301,7 +330,8 @@ const quizData = {
         'A mining tool',
         'A type of NFT'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'A public key is a cryptographic code that allows you to receive cryptocurrency.'
     }
   ],
   advanced: [
@@ -313,7 +343,8 @@ const quizData = {
         'A type of NFT',
         'A mining process'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'An atomic swap is a smart contract technology that enables the exchange of one cryptocurrency for another without using centralized intermediaries.'
     },
     {
       question: 'What is sharding in blockchain?',
@@ -323,7 +354,8 @@ const quizData = {
         'A mining process',
         'A crypto exchange'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'Sharding is a method of splitting a blockchain network into smaller pieces, or shards, to improve scalability.'
     },
     {
       question: 'What is a zero-knowledge proof?',
@@ -333,7 +365,8 @@ const quizData = {
         'A type of NFT',
         'A wallet password'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A zero-knowledge proof allows one party to prove to another that a statement is true, without revealing any information beyond the validity of the statement.'
     },
     {
       question: 'What is a Merkle tree?',
@@ -343,7 +376,8 @@ const quizData = {
         'A mining pool',
         'A crypto exchange'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A Merkle tree is a data structure used in blockchains for efficient and secure verification of data.'
     },
     {
       question: 'What is slashing in Proof of Stake?',
@@ -353,7 +387,8 @@ const quizData = {
         'A mining process',
         'A type of NFT'
       ],
-      answer: 1
+      answer: 1,
+      explanation: 'Slashing is a penalty applied to validators in Proof of Stake blockchains for malicious or faulty behavior.'
     },
     {
       question: 'What is a flash loan?',
@@ -363,7 +398,8 @@ const quizData = {
         'A type of NFT',
         'A mining tool'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A flash loan is a type of uncollateralized loan in DeFi that must be borrowed and repaid within a single transaction.'
     },
     {
       question: 'What is front-running in DeFi?',
@@ -373,7 +409,8 @@ const quizData = {
         'A type of NFT',
         'A mining process'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'Front-running is the act of executing a transaction based on advance knowledge of pending transactions.'
     },
     {
       question: 'What is a wrapped token?',
@@ -383,7 +420,8 @@ const quizData = {
         'A mining tool',
         'A type of NFT'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A wrapped token is a tokenized version of another cryptocurrency, allowing it to be used on a different blockchain.'
     },
     {
       question: 'What is impermanent loss?',
@@ -393,7 +431,8 @@ const quizData = {
         'A type of NFT',
         'A wallet bug'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'Impermanent loss is the temporary loss of funds experienced by liquidity providers due to price volatility in a liquidity pool.'
     },
     {
       question: 'What is a sidechain?',
@@ -403,7 +442,8 @@ const quizData = {
         'A mining pool',
         'A crypto exchange'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A sidechain is a separate blockchain that is attached to a main blockchain, allowing assets to move between them.'
     },
     {
       question: 'What is MEV (Miner Extractable Value)?',
@@ -413,7 +453,8 @@ const quizData = {
         'A mining tool',
         'A wallet bug'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'MEV is the profit that miners can make by reordering, including, or excluding transactions when producing a block.'
     },
     {
       question: 'What is a rollup in blockchain?',
@@ -423,7 +464,8 @@ const quizData = {
         'A mining process',
         'A crypto exchange'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A rollup is a layer 2 scaling solution that bundles multiple transactions into a single one to reduce fees and increase throughput.'
     },
     {
       question: 'What is a validator?',
@@ -433,7 +475,8 @@ const quizData = {
         'A mining tool',
         'A wallet bug'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A validator is a participant in a Proof of Stake blockchain who validates transactions and adds them to the blockchain.'
     },
     {
       question: 'What is a governance token?',
@@ -443,7 +486,8 @@ const quizData = {
         'A mining tool',
         'A wallet bug'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A governance token gives holders the right to vote on changes to a blockchain protocol.'
     },
     {
       question: 'What is a parachain?',
@@ -453,7 +497,8 @@ const quizData = {
         'A mining pool',
         'A crypto exchange'
       ],
-      answer: 0
+      answer: 0,
+      explanation: 'A parachain is a blockchain that runs parallel to a main blockchain, often used in the Polkadot ecosystem.'
     }
   ]
 };
@@ -488,20 +533,41 @@ function renderQuestion(idx) {
       `).join('')}
       <button type="submit" class="crypto-btn" style="margin-top:18px;">${idx === questions.length - 1 ? 'Finish' : 'Next'}</button>
     </form>
+    <div id="feedback-box" style="display:none;margin-top:18px;"></div>
   `;
   quizBox.appendChild(card);
-  document.getElementById('quiz-form').onsubmit = function(e) {
+  const form = document.getElementById('quiz-form');
+  const feedbackBox = document.getElementById('feedback-box');
+  form.onsubmit = function(e) {
     e.preventDefault();
     const val = document.querySelector('input[name="option"]:checked');
     if (!val) return;
-    if (parseInt(val.value) === q.answer) score++;
+    const chosen = parseInt(val.value);
+    let correct = chosen === q.answer;
+    if (correct) score++;
     selected = null;
-    current++;
-    if (current < questions.length) {
-      renderQuestion(current);
+    // Show feedback
+    feedbackBox.style.display = 'block';
+    if (correct) {
+      feedbackBox.innerHTML = `<div style='color:#007bff;font-weight:600;margin-bottom:8px;'>Correct!</div><div>${q.explanation || ''}</div>`;
     } else {
-      showResult();
+      feedbackBox.innerHTML = `<div style='color:#d32f2f;font-weight:600;margin-bottom:8px;'>Incorrect.</div><div>The correct answer is: <strong>${q.options[q.answer]}</strong></div><div style='margin-top:8px;'>${q.explanation || ''}</div>`;
     }
+    // Disable all options
+    form.querySelectorAll('input[name="option"]').forEach(input => input.disabled = true);
+    // Change button to "Continue"
+    const btn = form.querySelector('button');
+    btn.textContent = idx === questions.length - 1 ? 'See Results' : 'Continue';
+    // Only allow next after feedback
+    btn.onclick = function(ev) {
+      ev.preventDefault();
+      current++;
+      if (current < questions.length) {
+        renderQuestion(current);
+      } else {
+        showResult();
+      }
+    };
   };
   document.querySelectorAll('input[name="option"]').forEach(input => {
     input.onclick = () => { selected = parseInt(input.value); };
