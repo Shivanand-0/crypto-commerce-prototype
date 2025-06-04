@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; frame-src 'self' https://www.youtube.com; connect-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.youtube.com https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://unpkg.com; img-src 'self' data: https:; frame-src 'self' https://www.youtube.com; connect-src 'self' https://raw.githubusercontent.com https://api.coingecko.com;">
     <meta http-equiv="Permissions-Policy" content="accelerometer=(), autoplay=(), clipboard-write=(), encrypted-media=(), gyroscope=(), picture-in-picture=()">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <title>Revolutionizing Crypto & NFT Onboarding with a Website Prototype</title>
@@ -59,13 +58,10 @@
   <nav class="navbar">
     <div class="navbar-content">
       <a href="index.html" class="navbar-title">Crypto Stitch</a>
-      
-<div class="navbar-actions">
-  <a href="pages/glossary.html" class="crypto-btn">Crypto Glossary</a>
-  <a href="pages/subscribe.html" class="crypto-btn">Subscribe</a>
-  <a href="pages/quiz.html" class="crypto-btn">Quiz Page</a>
-  <button id="quiz-btn" class="crypto-btn">Take a Quiz</button>
-
+      <div class="navbar-actions">
+        <a href="pages/glossary.html" class="crypto-btn">Crypto Glossary</a>
+        <button id="quiz-btn" class="crypto-btn">Take a Quiz</button>
+      </div>
     </div>
   </nav>
   <div class="glossary-container">
@@ -123,12 +119,17 @@
         <h3>Conclusion</h3>
         <p>Crypto Stitch is a testament to the power of innovation in Web 3.0, redefining how users engage with digital and physical artifacts. Through our unique approach, we have created a one-of-a-kind experience that is both educational and engaging, pushing the boundaries of blockchain-based commerce.</p>
       </div>
-    </div>
-    <footer>
+      <div class="glossary-card">
+        <h3>Crypto Around the World</h3>
+        <div id="crypto-map" style="height: 420px; width: 100%; max-width: 700px; margin: 0 auto;"></div>
+        <div id="crypto-tooltip" style="display:none; position:absolute; background:#fff; border:1px solid #ccc; border-radius:8px; padding:10px; pointer-events:none; z-index:9999; font-size:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.12);"></div>
+        <h4 style="margin-top:32px;">Top 10 Countries by Crypto Index</h4>
+        <canvas id="crypto-chart"></canvas>
+      </div>
       <div class="glossary-card source-card">
         <p>Article sourced from <a href="https://medium.com/@anushkaguptaofficial/the-future-of-interactive-crypto-commerce-a-website-prototype-for-crypto-based-nft-brand-9ad96e6c7416" target="_blank">Medium</a></p>
       </div>
-    </footer>
+    </div>
   </div>
   <!-- Quiz Modal -->
   <div id="quiz-modal" class="quiz-modal">
@@ -140,5 +141,12 @@
     </div>
   </div>
   <script src="js/quiz.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet-geoman-free@2.13.0/dist/leaflet-geoman.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-geoman-free@2.13.0/dist/leaflet-geoman.css" />
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="js/crypto-map.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
