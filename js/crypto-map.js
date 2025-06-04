@@ -41,17 +41,40 @@ window.addEventListener('DOMContentLoaded', function() {
           const rates = response.data.rates;
           // Map country code to BTC rate (mock: randomize for demo)
           const countryCrypto = {};
+          // --- SEEDED RANDOM FOR CONSISTENT DEMO DATA ---
+          function seededRandom(seed) {
+            let x = Math.sin(seed++) * 10000;
+            return x - Math.floor(x);
+          }
+          let demoSeed = sessionStorage.getItem('cryptoDemoSeed');
+          if (!demoSeed) {
+            demoSeed = Date.now();
+            sessionStorage.setItem('cryptoDemoSeed', demoSeed);
+          }
+          demoSeed = Number(demoSeed);
+          let demoIndex = 0;
+          // Replace random assignment with seeded random
           geojson.features.forEach(f => {
-            // Use ISO_A2 or id for country code, fallback to random for demo
             const code = f.id || f.properties.ISO_A2 || f.properties.id;
-            countryCrypto[code] = Math.random() * 1000; // Replace with real mapping if available
+            countryCrypto[code] = seededRandom(demoSeed + (++demoIndex)) * 1000;
           });
+          // --- COLORFUL RAINBOW SCALE FOR MAP & CHART ---
+          function getColor(val) {
+            if (val > 900) return '#e31a1c';      // red
+            if (val > 800) return '#fd8d3c';      // orange
+            if (val > 700) return '#feb24c';      // yellow-orange
+            if (val > 600) return '#fed976';      // yellow
+            if (val > 400) return '#31a354';      // green
+            if (val > 200) return '#3182bd';      // blue
+            if (val > 100) return '#756bb1';      // purple
+            return '#bcbddc';                     // light purple/gray
+          }
           // Style and interactivity
           function style(feature) {
             const code = feature.id || feature.properties.ISO_A2 || feature.properties.id;
-            const val = countryCrypto[code] || 0;
+            const val = typeof countryCrypto[code] === 'number' ? countryCrypto[code] : 0;
             return {
-              fillColor: val > 800 ? '#7c3aed' : val > 400 ? '#a78bfa' : '#e0e7ff',
+              fillColor: getColor(val),
               weight: 1,
               opacity: 1,
               color: '#888',
@@ -62,13 +85,19 @@ window.addEventListener('DOMContentLoaded', function() {
             layer.on({
               mouseover: function(e) {
                 const code = feature.id || feature.properties.ISO_A2 || feature.properties.id;
-                const val = countryCrypto[code] || 0;
+                const countryName = feature.properties.name || feature.properties.ADMIN || code;
                 tooltip.style.display = 'block';
-                tooltip.innerHTML = `<strong>${feature.properties.name || feature.properties.ADMIN}</strong><br>Crypto Index: ${val.toFixed(0)}`;
-                tooltip.style.left = (e.originalEvent.pageX + 10) + 'px';
-                tooltip.style.top = (e.originalEvent.pageY - 30) + 'px';
-                layer.setStyle({ weight: 2, color: '#222', fillOpacity: 0.9 });
-                map.getContainer().style.cursor = 'default'; // Keep default cursor
+                tooltip.innerHTML = `<strong>${countryName}</strong>`;
+                // Use viewport coordinates for tooltip to avoid clipping
+                const mapRect = map.getContainer().getBoundingClientRect();
+                const x = e.originalEvent.clientX - mapRect.left + 10;
+                const y = e.originalEvent.clientY - mapRect.top - 30;
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+                tooltip.style.zIndex = 9999;
+                tooltip.style.pointerEvents = 'none';
+                layer.setStyle({ weight: 2, color: '#222', fillOpacity: 0.9, fillColor: getColor(typeof countryCrypto[code] === 'number' ? countryCrypto[code] : 0) });
+                map.getContainer().style.cursor = 'default';
               },
               mouseout: function(e) {
                 tooltip.style.display = 'none';
@@ -76,8 +105,11 @@ window.addEventListener('DOMContentLoaded', function() {
                 map.getContainer().style.cursor = 'default';
               },
               mousemove: function(e) {
-                tooltip.style.left = (e.originalEvent.pageX + 10) + 'px';
-                tooltip.style.top = (e.originalEvent.pageY - 30) + 'px';
+                const mapRect = map.getContainer().getBoundingClientRect();
+                const x = e.originalEvent.clientX - mapRect.left + 10;
+                const y = e.originalEvent.clientY - mapRect.top - 30;
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
               }
             });
           }
@@ -85,62 +117,193 @@ window.addEventListener('DOMContentLoaded', function() {
             style,
             onEachFeature
           }).addTo(map);
-
-          // --- BAR CHART ---
-          // Get top 10 countries by crypto index
-          const top10 = Object.entries(countryCrypto)
+          // --- BAR CHART: TOP 10 COUNTRIES BY CRYPTO INDEX ---
+          // Find top 10 countries by value
+          const sortedCountries = Object.entries(countryCrypto)
             .sort((a, b) => b[1] - a[1])
             .slice(0, 10);
-          const chartLabels = top10.map(([code]) => code);
-          const chartData = top10.map(([, val]) => val);
+          const chartLabels = sortedCountries.map(([code]) => {
+            // Try to get country name from geojson
+            const feature = geojson.features.find(f => (f.id || f.properties.ISO_A2 || f.properties.id) === code);
+            const name = feature ? (feature.properties.name || feature.properties.ADMIN) : code;
+            return name + ' (' + code + ')';
+          });
+          const chartData = sortedCountries.map(([, val]) => Number(val));
+          const chartColors = sortedCountries.map(([, val]) => getColor(Number(val)));
           const chartCanvas = document.getElementById('crypto-chart');
           if (chartCanvas) {
-            // Remove previous chart instance if any
             if (window.cryptoChartInstance) {
               window.cryptoChartInstance.destroy();
             }
-            // Chart.js 4+ requires a 2d context
             const ctx = chartCanvas.getContext('2d');
-            chartCanvas.style.display = 'block';
             chartCanvas.width = 700;
             chartCanvas.height = 340;
-            window.cryptoChartInstance = new Chart(ctx, {
-              type: 'bar',
-              data: {
-                labels: chartLabels,
-                datasets: [{
-                  label: 'Crypto Index',
-                  data: chartData,
-                  backgroundColor: '#7c3aed',
-                  borderRadius: 8,
-                  borderSkipped: false,
-                  borderWidth: 0,
-                  hoverBackgroundColor: '#a78bfa',
-                }]
-              },
-              options: {
-                responsive: false,
-                plugins: {
-                  legend: { display: false },
-                  title: { display: true, text: 'Top 10 Countries by Crypto Index', color: '#7c3aed', font: { size: 18, weight: 'bold' } }
+            ctx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+            if (window.Chart) {
+              window.cryptoChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: chartLabels,
+                  datasets: [{
+                    label: 'Crypto Index',
+                    data: chartData,
+                    backgroundColor: chartColors,
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    borderWidth: 2,
+                    hoverBackgroundColor: chartColors
+                  }]
                 },
-                scales: {
-                  x: {
-                    ticks: { color: '#222', font: { weight: 'bold' } },
-                    grid: { color: '#e0e0e0' }
+                options: {
+                  responsive: false,
+                  animation: true,
+                  plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Crypto Index of Top 10 Countries', color: '#7c3aed', font: { size: 18, weight: 'bold' } }
                   },
-                  y: {
-                    beginAtZero: true,
-                    ticks: { color: '#222', font: { weight: 'bold' } },
-                    grid: { color: '#e0e0e0' }
+                  scales: {
+                    x: {
+                      ticks: { color: '#222', font: { weight: 'bold' } },
+                      grid: { color: '#e0e0e0' }
+                    },
+                    y: {
+                      beginAtZero: true,
+                      ticks: { color: '#222', font: { weight: 'bold' } },
+                      grid: { color: '#e0e0e0' }
+                    }
                   }
                 }
-              }
-            });
+              });
+            } else {
+              chartCanvas.parentNode.insertAdjacentHTML('beforeend', '<div style="color:red;text-align:center;margin-top:1em;">Chart.js library not loaded.</div>');
+            }
           }
         })
         .catch(err => {
-          document.getElementById('crypto-map').innerHTML = '<div style="color:red;text-align:center;padding:2em;">Failed to fetch crypto data.</div>';
+          // Fallback: generate seeded demo data for all countries
+          let demoIndex = 0;
+          geojson.features.forEach(f => {
+            const code = f.id || f.properties.ISO_A2 || f.properties.id;
+            countryCrypto[code] = seededRandom(demoSeed + (++demoIndex)) * 1000;
+          });
+          // --- COLORFUL RAINBOW SCALE FOR MAP & CHART ---
+          function getColor(val) {
+            if (val > 900) return '#e31a1c';
+            if (val > 800) return '#fd8d3c';
+            if (val > 700) return '#feb24c';
+            if (val > 600) return '#fed976';
+            if (val > 400) return '#31a354';
+            if (val > 200) return '#3182bd';
+            if (val > 100) return '#756bb1';
+            return '#bcbddc';
+          }
+          // Style and interactivity
+          function style(feature) {
+            const code = feature.id || feature.properties.ISO_A2 || feature.properties.id;
+            const val = typeof countryCrypto[code] === 'number' ? countryCrypto[code] : 0;
+            return {
+              fillColor: getColor(val),
+              weight: 1,
+              opacity: 1,
+              color: '#888',
+              fillOpacity: 0.7
+            };
+          }
+          function onEachFeature(feature, layer) {
+            layer.on({
+              mouseover: function(e) {
+                const code = feature.id || feature.properties.ISO_A2 || feature.properties.id;
+                const countryName = feature.properties.name || feature.properties.ADMIN || code;
+                tooltip.style.display = 'block';
+                tooltip.innerHTML = `<strong>${countryName}</strong>`;
+                // Use viewport coordinates for tooltip to avoid clipping
+                const mapRect = map.getContainer().getBoundingClientRect();
+                const x = e.originalEvent.clientX - mapRect.left + 10;
+                const y = e.originalEvent.clientY - mapRect.top - 30;
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+                tooltip.style.zIndex = 9999;
+                tooltip.style.pointerEvents = 'none';
+                layer.setStyle({ weight: 2, color: '#222', fillOpacity: 0.9, fillColor: getColor(typeof countryCrypto[code] === 'number' ? countryCrypto[code] : 0) });
+                map.getContainer().style.cursor = 'default';
+              },
+              mouseout: function(e) {
+                tooltip.style.display = 'none';
+                geojsonLayer.resetStyle(layer);
+                map.getContainer().style.cursor = 'default';
+              },
+              mousemove: function(e) {
+                const mapRect = map.getContainer().getBoundingClientRect();
+                const x = e.originalEvent.clientX - mapRect.left + 10;
+                const y = e.originalEvent.clientY - mapRect.top - 30;
+                tooltip.style.left = x + 'px';
+                tooltip.style.top = y + 'px';
+              }
+            });
+          }
+          const geojsonLayer = L.geoJson(geojson, {
+            style,
+            onEachFeature
+          }).addTo(map);
+          // --- BAR CHART: TOP 10 COUNTRIES BY CRYPTO INDEX ---
+          const sortedCountries = Object.entries(countryCrypto)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 10);
+          const chartLabels = sortedCountries.map(([code]) => {
+            const feature = geojson.features.find(f => (f.id || f.properties.ISO_A2 || f.properties.id) === code);
+            const name = feature ? (feature.properties.name || feature.properties.ADMIN) : code;
+            return name + ' (' + code + ')';
+          });
+          const chartData = sortedCountries.map(([, val]) => Number(val));
+          const chartColors = sortedCountries.map(([, val]) => getColor(Number(val)));
+          const chartCanvas = document.getElementById('crypto-chart');
+          if (chartCanvas) {
+            if (window.cryptoChartInstance) {
+              window.cryptoChartInstance.destroy();
+            }
+            const ctx = chartCanvas.getContext('2d');
+            chartCanvas.width = 700;
+            chartCanvas.height = 340;
+            ctx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+            if (window.Chart) {
+              window.cryptoChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                  labels: chartLabels,
+                  datasets: [{
+                    label: 'Crypto Index',
+                    data: chartData,
+                    backgroundColor: chartColors,
+                    borderRadius: 8,
+                    borderSkipped: false,
+                    borderWidth: 2,
+                    hoverBackgroundColor: chartColors
+                  }]
+                },
+                options: {
+                  responsive: false,
+                  animation: true,
+                  plugins: {
+                    legend: { display: false },
+                    title: { display: true, text: 'Crypto Index of Top 10 Countries', color: '#7c3aed', font: { size: 18, weight: 'bold' } }
+                  },
+                  scales: {
+                    x: {
+                      ticks: { color: '#222', font: { weight: 'bold' } },
+                      grid: { color: '#e0e0e0' }
+                    },
+                    y: {
+                      beginAtZero: true,
+                      ticks: { color: '#222', font: { weight: 'bold' } },
+                      grid: { color: '#e0e0e0' }
+                    }
+                  }
+                }
+              });
+            } else {
+              chartCanvas.parentNode.insertAdjacentHTML('beforeend', '<div style="color:red;text-align:center;margin-top:1em;">Chart.js library not loaded.</div>');
+            }
+          }
         });
     })
     .catch(err => {
