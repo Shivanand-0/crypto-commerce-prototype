@@ -60,6 +60,7 @@
       <a href="index.html" class="navbar-title">Crypto Stitch</a>
       <div class="navbar-actions">
         <a href="pages/glossary.html" class="crypto-btn">Crypto Glossary</a>
+        <button id="subscribe-btn" class="crypto-btn">Subscribe</button>
         <button id="quiz-btn" class="crypto-btn">Take a Quiz</button>
       </div>
     </div>
@@ -123,6 +124,17 @@
         <h3>Crypto Around the World</h3>
         <div id="crypto-map" style="height: 420px; width: 100%; max-width: 700px; margin: 0 auto;"></div>
         <div id="crypto-tooltip" style="display:none; position:absolute; background:#fff; border:1px solid #ccc; border-radius:8px; padding:10px; pointer-events:none; z-index:9999; font-size:1rem; box-shadow:0 2px 8px rgba(0,0,0,0.12);"></div>
+        <!-- Color legend for crypto index values -->
+        <div style="display:flex;justify-content:center;align-items:center;gap:18px;margin:18px 0 8px 0;flex-wrap:wrap;">
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:22px;height:18px;background:#e31a1c;border-radius:4px;"></span> &gt; 900</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:22px;height:18px;background:#fd8d3c;border-radius:4px;"></span> 801–900</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:22px;height:18px;background:#feb24c;border-radius:4px;"></span> 701–800</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:22px;height:18px;background:#fed976;border-radius:4px;"></span> 601–700</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:22px;height:18px;background:#31a354;border-radius:4px;"></span> 401–600</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:22px;height:18px;background:#3182bd;border-radius:4px;"></span> 201–400</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:22px;height:18px;background:#756bb1;border-radius:4px;"></span> 101–200</span>
+          <span style="display:flex;align-items:center;gap:6px;"><span style="display:inline-block;width:22px;height:18px;background:#bcbddc;border-radius:4px;"></span> 0–100</span>
+        </div>
         <h4 style="margin-top:32px;">Top 10 Countries by Crypto Index</h4>
         <canvas id="crypto-chart"></canvas>
       </div>
@@ -140,6 +152,20 @@
       </div>
     </div>
   </div>
+  <!-- Subscription Modal -->
+  <div id="subscribe-modal" class="quiz-modal">
+    <div class="quiz-modal-content" style="max-width:420px;min-width:320px;">
+      <span class="quiz-close-btn" id="subscribe-close-btn">&times;</span>
+      <div class="subscribe-title" style="font-size:2rem;font-weight:bold;color:#7c3aed;margin-bottom:12px;text-align:center;">Subscribe to Our Newsletter</div>
+      <div class="subscribe-desc" style="color:#444;font-size:1.08rem;margin-bottom:28px;text-align:center;">Get the latest updates, crypto news, and exclusive offers from Crypto Stitch directly to your inbox.</div>
+      <form class="subscribe-form" id="newsletter-form" autocomplete="off" style="width:100%;display:flex;flex-direction:column;gap:18px;">
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required style="padding:12px 14px;border:1.5px solid #a78bfa;border-radius:8px;font-size:1.08rem;outline:none;transition:border 0.2s;" />
+        <input type="password" id="password" name="password" placeholder="Create a password" minlength="6" required style="padding:12px 14px;border:1.5px solid #a78bfa;border-radius:8px;font-size:1.08rem;outline:none;transition:border 0.2s;" />
+        <button type="submit" style="background:linear-gradient(90deg,#7c3aed 60%,#a78bfa 100%);color:#fff;font-size:1.1rem;font-weight:600;border:none;border-radius:8px;padding:12px 0;cursor:pointer;transition:background 0.18s,color 0.18s,border 0.18s;box-shadow:0 2px 8px rgba(124,58,237,0.08);">Subscribe</button>
+        <div class="subscribe-success" id="subscribe-success" style="color:#31a354;font-weight:600;margin-top:18px;text-align:center;display:none;">Thank you for subscribing!</div>
+      </form>
+    </div>
+  </div>
   <script src="js/quiz.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -148,5 +174,29 @@
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="js/crypto-map.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Subscription modal logic
+    const subscribeBtn = document.getElementById('subscribe-btn');
+    const subscribeModal = document.getElementById('subscribe-modal');
+    const subscribeCloseBtn = document.getElementById('subscribe-close-btn');
+    subscribeBtn.addEventListener('click', function() {
+      subscribeModal.classList.add('active');
+      document.body.classList.add('quiz-blur');
+    });
+    subscribeCloseBtn.addEventListener('click', function() {
+      subscribeModal.classList.remove('active');
+      document.body.classList.remove('quiz-blur');
+    });
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('subscribe-success').style.display = 'block';
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('subscribe-success').style.display = 'none';
+        subscribeModal.classList.remove('active');
+        document.body.classList.remove('quiz-blur');
+      }, 2500);
+    });
+  </script>
 </body>
 </html>
