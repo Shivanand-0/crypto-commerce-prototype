@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe to Newsletter | Crypto Stitch</title>
+  <link rel="stylesheet" href="../styles/style.css">
+  <style>
+    body {
+      background: #f5f6fa;
+      margin: 0;
+      font-family: 'Inter', Arial, sans-serif;
+      min-height: 100vh;
+    }
+    .subscribe-modal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .subscribe-modal-content {
+      background: #fff;
+      width: 90vw;
+      max-width: 420px;
+      min-width: 320px;
+      border-radius: 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.18);
+      padding: 48px 40px 32px 40px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .subscribe-title {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #7c3aed;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .subscribe-desc {
+      color: #444;
+      font-size: 1.08rem;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .subscribe-form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .subscribe-form input[type="email"],
+    .subscribe-form input[type="password"] {
+      padding: 12px 14px;
+      border: 1.5px solid #a78bfa;
+      border-radius: 8px;
+      font-size: 1.08rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .subscribe-form input[type="email"]:focus,
+    .subscribe-form input[type="password"]:focus {
+      border: 1.5px solid #7c3aed;
+    }
+    .subscribe-form button {
+      background: linear-gradient(90deg, #7c3aed 60%, #a78bfa 100%);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 0;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s, border 0.18s;
+      box-shadow: 0 2px 8px rgba(124, 58, 237, 0.08);
+    }
+    .subscribe-form button:hover {
+      background: #fff;
+      color: #7c3aed;
+      border: 2px solid #7c3aed;
+      box-shadow: 0 2px 8px rgba(124,58,237,0.10);
+    }
+    /* Add focus style for accessibility */
+    .subscribe-form button:focus {
+      outline: 2px solid #7c3aed;
+      outline-offset: 2px;
+    }
+    .subscribe-success {
+      color: #31a354;
+      font-weight: 600;
+      margin-top: 18px;
+      text-align: center;
+      display: none;
+    }
+    @media (max-width: 600px) {
+      .subscribe-modal-content {
+        padding: 32px 12px 24px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="subscribe-modal">
+    <div class="subscribe-modal-content">
+      <div class="subscribe-title">Subscribe to Our Newsletter</div>
+      <div class="subscribe-desc">Get the latest updates, crypto news, and exclusive offers from Crypto Stitch directly to your inbox.</div>
+      <form class="subscribe-form" id="newsletter-form" autocomplete="off">
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+        <input type="password" id="password" name="password" placeholder="Create a password" minlength="6" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="subscribe-success" id="subscribe-success">Thank you for subscribing!</div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('subscribe-success').style.display = 'block';
+      this.reset();
+      setTimeout(() => {
+        document.getElementById('subscribe-success').style.display = 'none';
+      }, 3500);
+    });
+  </script>
+</body>
+</html>
